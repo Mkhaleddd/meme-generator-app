@@ -7,7 +7,7 @@ import React from "react"
             .then(res=>res.json())
             .then(data=>setAllMemes(data.data.memes))
             // async  ()=> {
-            //     const res = await fetch("https://api.imgflip.com/");
+            //     const res = await fetch("https://api.imgflip.com/get-memes");
             //     const data=await res.json()
             //     setAllMemes(data.data.memes)
             // }
@@ -30,20 +30,15 @@ import React from "react"
              }
              function handleChange(event) {
                 const {name,value}=event.target;
-                setMeme(prevState=>{
+                setMeme(prevState=>{ 
                     return {
                    ...prevState,
                         [name]:value  
                 }}
-                )
-             }
-             React.useEffect(()=>{
-                
-                setIsClick(true)},[meme])
-                            
-             
-                
-           
+                            )}
+                React.useEffect(()=>{
+                    setIsClick(!isClick)
+                },[meme])
 
      return (
         <main>
@@ -67,11 +62,12 @@ import React from "react"
                 <button 
                     className="form--button"
                     onClick={getMemeImage}
+                    
                 >
                     Get a new meme image 🖼
                 </button>
-            </div>
-            <div className="meme"  style={{animation:isClick?"tilt-in-bottom-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both":""}}>
+            </div> 
+            <div className="meme" style={{animation:isClick?"tilt-in-bottom-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both":"tilt-in-top-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"}}>
                 <img src={meme.randomImage} className="meme--image" />
                 <h2 className="meme--text top">{meme.topText}</h2>
                 <h2 className="meme--text bottom">{meme.bottomText}</h2>
