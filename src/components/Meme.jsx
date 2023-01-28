@@ -39,7 +39,7 @@ import React from "react"
              }
              React.useEffect(()=>{
                 
-                setIsClick(!isClick)},[meme])
+                setIsClick(true)},[meme])
                             
              
                 
