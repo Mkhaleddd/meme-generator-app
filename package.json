@@ -1,13 +1,13 @@
 {
   "name": "meme-app-deployed",
-  "homepage": "https://Mkhaleddd.github.io/meme-generator",
+  "homepage": "https://Mkhaleddd.github.io/meme-generator-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "preview": "vite preview"
   },
