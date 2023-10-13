@@ -3,20 +3,21 @@ import React from "react"
   export default  function Meme() {
     const [isClick,setIsClick]=React.useState(false);
     React.useEffect(()=>{
-            fetch("https://api.imgflip.com/get_memes")
+        const controller= new AbortController();
+        const signal=controller.signal
+            fetch("https://api.imgflip.com/get_memes",{signal})
             .then(res=>res.json())
             .then(data=>setAllMemes(data.data.memes))
-            // async  ()=> {
-            //     const res = await fetch("https://api.imgflip.com/get-memes");
-            //     const data=await res.json()
-            //     setAllMemes(data.data.memes)
-            // }
+            .catch(controller.signal.aborted)
+            return ()=> controller.abort();
     },[])
+
     const [allMemes,setAllMemes]=React.useState([])
     const [meme,setMeme]=React.useState({
     "topText":"",
     "bottomText":"",
     "randomImage":" http://i.imgflip.com/1bij.jpg"})
+
     
     function getMemeImage() {
         const randomNumber = Math.floor(Math.random() * allMemes.length)
@@ -28,17 +29,24 @@ import React from "react"
             })
             )
              }
-             function handleChange(event) {
-                const {name,value}=event.target;
-                setMeme(prevState=>{ 
-                    return {
-                   ...prevState,
-                        [name]:value  
-                }}
-                            )}
-                React.useEffect(()=>{
-                    setIsClick(!isClick)
-                },[meme])
+
+    function handleChange(event) {
+                    const {name,value}=event.target;
+                    setMeme(prevState=>{ 
+                        return {
+                    ...prevState,
+                    [name]:value
+                    }})}
+ 
+    React.useEffect(()=>{ 
+    setIsClick(!isClick) ;
+    (()=>{ setMeme(prevState=>{ 
+                            return {
+                        ...prevState,
+                            topText:'',
+                            bottomText:''
+                        }})})()
+    },[meme.randomImage])
 
      return (
         <main>

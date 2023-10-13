@@ -10,21 +10,23 @@
 body {
   font-family: "Karla", sans-serif;
   margin: 0;
-  background: linear-gradient(45deg, var(--lg-gr)30%, var(--d-gr) 80%);
+  background: linear-gradient(45deg, var(--v-lg-gr)30%, var(--d-gr) 80%);
 }
 
 main {
   padding: 36px;
+
 }
 
 .header {
   display: flex;
   align-items: center;
   height: 65px;
-  background: linear-gradient(45deg,var(--gr) 1.18%,var(--v-d-gr)100%);
+  background: linear-gradient(45deg,var(--lg-gr) 1.18%,var(--v-d-gr)100%);
   color: white;
   padding: 20px;
   border-radius: 25px 10px;
+  
 }
 
 
@@ -102,7 +104,10 @@ h2 {
 .top {
   top: 0;
 }
+/*                                                    ANIMATION                                                                     */
 
+  
+    
 .tilt-in-bottom-1 {
 	-webkit-animation: tilt-in-bottom-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: tilt-in-bottom-1 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -161,3 +166,6 @@ h2 {
     opacity: 1;
   }
 }
+   
+
+
